@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.get_JSESSIONID = void 0;
 const request = require('request');
-//ヘッダーに必ずUser-Agentを設定すること。
 async function get_JSESSIONID() {
     return new Promise((resolve, reject) => {
         request.post({
@@ -22,10 +21,8 @@ async function get_JSESSIONID() {
                 reject(error);
             }
             else {
-                //Cookieをパースして、JSESSIONIDを取得する
                 const cookie = response.headers['set-cookie'];
                 const JSESSIONID = cookie[0].split(';')[0].split('=')[1];
-                //console.log(JSESSIONID);
                 resolve(JSESSIONID);
             }
         });
