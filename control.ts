@@ -6,7 +6,7 @@ const state = require('./state.json');
 
 dotenv.config();
 
-
+//メイン
 get_JSESSIONID().then(JSESSIONID => {
     return sendCommand(JSESSIONID, state['power_off']['controlList']);
 }).then(result => {
