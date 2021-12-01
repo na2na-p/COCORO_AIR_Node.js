@@ -1,13 +1,10 @@
 const request = require('request');
 
-//POSTリクエストを送信するメソッド
-//ヘッダーに必ずUser-Agentを設定すること
-//CookieにJSESSIONIDを設定すること
-export async function sendCommand(URL_PREFIX:string, BOX_ID:string, JSESSIONID: string, APP_SECRET:string, controlList: any) {
+export async function sendCommand(JSESSIONID: string, controlList: any) {
     return new Promise((resolve, reject) => {
         request.post(
         {
-            url: `${URL_PREFIX}/control/deviceControl?boxId=https://db.cloudlabs.sharp.co.jp/clpf/key/${BOX_ID}&appSecret=${APP_SECRET}`,
+            url: `${process.env.URL_PREFIX}/control/deviceControl?boxId=https://db.cloudlabs.sharp.co.jp/clpf/key/${process.env.BOX_ID}&appSecret=${process.env.APP_SECRET}`,
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
                 'Connection': 'keep-alive',

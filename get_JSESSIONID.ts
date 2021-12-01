@@ -1,11 +1,12 @@
 const request = require('request');
+//const TERMINALAPPIDKEY:any = process.env.TERMINALAPPIDKEY;
 
 //ヘッダーに必ずUser-Agentを設定すること。
-export async function get_JSESSIONID(URL_PREFIX:string,APP_SECRET:string,TERMINALAPPIDKEY:string): Promise<any> {
+export async function get_JSESSIONID(): Promise<any> {
     return new Promise((resolve, reject) => {
     request.post(
         {
-        url: `${URL_PREFIX}/setting/login/?appSecret=${APP_SECRET}&serviceName=iClub`,
+        url: `${process.env.URL_PREFIX}/setting/login/?appSecret=${process.env.APP_SECRET}&serviceName=iClub`,
         headers: {
             'Content-Type': 'application/json; charset=utf-8',
             'Connection': 'keep-alive',
@@ -14,10 +15,10 @@ export async function get_JSESSIONID(URL_PREFIX:string,APP_SECRET:string,TERMINA
             'Accept-Language': 'ja-jp'
         },
         json: {
-            "terminalAppId": `https://db.cloudlabs.sharp.co.jp/clpf/key/${TERMINALAPPIDKEY}`
+            "terminalAppId": `https://db.cloudlabs.sharp.co.jp/clpf/key/${process.env.TERMINALAPPIDKEY}`
         },
         },
-        (error: any, response: any, body: any) => {
+        (error: any, response: { headers: { [x: string]: any; }; }) => {
             if (error) {
                 reject(error);
             } else {
