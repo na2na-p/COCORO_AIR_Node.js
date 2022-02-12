@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node control.js"
+    "build": "npm install && npx tsc && node scripts/build.js",
+    "start": "node built/control.js"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +15,7 @@
     "request": "^2.88.2"
   },
   "devDependencies": {
-    "@types/node": "^16.11.7"
+    "@types/node": "^16.11.7",
+    "fs-extra": "^10.0.0"
   }
 }
